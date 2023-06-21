@@ -1,13 +1,17 @@
 package frc.robot.Subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
 public class SwerveModule extends SubsystemBase {
 
-	private Spark angleMotor;
+	private CANSparkMax angleMotor;
 	private Spark speedMotor;
 	private PIDController pidController;
 	private AnalogEncoder angleEncoder;
@@ -15,7 +19,7 @@ public class SwerveModule extends SubsystemBase {
 	private final double MAX_VOLTS = 4;
 
 	public SwerveModule(int angleMotor, int speedMotor, int encoder1) {
-		this.angleMotor = new Spark(angleMotor);
+		this.angleMotor = new CANSparkMax(angleMotor, MotorType.kBrushless);
 		this.speedMotor = new Spark(speedMotor);
 		angleEncoder = new AnalogEncoder(encoder1);
 
