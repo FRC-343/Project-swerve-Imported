@@ -3,6 +3,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,10 +21,10 @@ private final XboxController m_xboxcontroller = new XboxController(1);
     private CommandBase m_auto;
     private final SendableChooser<CommandBase> m_autoChooser = new SendableChooser<CommandBase>();
 
-    private SwerveModule backRight = new SwerveModule(8, 7, 0); //angleMotor Port, speedMotor port, ecoder 1, and 2
-    private SwerveModule backLeft = new SwerveModule(3, 2, 1);
-    private SwerveModule frontRight = new SwerveModule(9, 5, 3);
-    private SwerveModule frontLeft = new SwerveModule(1, 0, 2);
+    private SwerveModule backRight = new SwerveModule(8, 7, new CANSparkMax(8,MotorType.kBrushless).getEncoder());//0); //angleMotor Port, speedMotor port, ecoder 1, and 2
+    private SwerveModule backLeft = new SwerveModule(3, 2, new CANSparkMax(3,MotorType.kBrushless).getEncoder());//1);
+    private SwerveModule frontRight = new SwerveModule(9, 5, new CANSparkMax(9,MotorType.kBrushless).getEncoder());//3);
+    private SwerveModule frontLeft = new SwerveModule(1, 0, new CANSparkMax(1,MotorType.kBrushless).getEncoder());//2);
     private Spark flTest = new Spark(1);
 
 	private SwerveDrive swerveDrive = new SwerveDrive(backRight, backLeft, frontRight, frontLeft);

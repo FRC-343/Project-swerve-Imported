@@ -1,6 +1,7 @@
 package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -14,14 +15,15 @@ public class SwerveModule extends SubsystemBase {
 	private CANSparkMax angleMotor;
 	private Spark speedMotor;
 	private PIDController pidController;
-	private AnalogEncoder angleEncoder;
+	private PIDController angleEncoder;
 
 	private final double MAX_VOLTS = 4;
 
-	public SwerveModule(int angleMotor, int speedMotor, int encoder1) {
+	public SwerveModule(int angleMotor, int speedMotor, RelativeEncoder relativeEncoder) {
 		this.angleMotor = new CANSparkMax(angleMotor, MotorType.kBrushless);
 		this.speedMotor = new Spark(speedMotor);
-		angleEncoder = new AnalogEncoder(encoder1);
+		angleEncoder = //new AnalogEncoder(encoder1);
+		
 
 		pidController = new PIDController(1, 0, 0);
 		pidController.enableContinuousInput(-1, 1); // this needs to change later TODO
@@ -29,7 +31,7 @@ public class SwerveModule extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		angleMotor.set(pidController.calculate(angleEncoder.getDistance())); // spins angle motor
+		angleMotor.set(pidController.calculate(angleEncoder.getSetpoint())); // spins angle motor
 	}
 
 	public void drive(double speed, double angle) {
