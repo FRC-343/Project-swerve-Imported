@@ -25,8 +25,7 @@ private final XboxController m_xboxcontroller = new XboxController(1);
     private SwerveModule backLeft = new SwerveModule(3, 2, new CANSparkMax(3,MotorType.kBrushless).getEncoder());//1);
     private SwerveModule frontRight = new SwerveModule(9, 5, new CANSparkMax(9,MotorType.kBrushless).getEncoder());//3);
     private SwerveModule frontLeft = new SwerveModule(1, 0, new CANSparkMax(1,MotorType.kBrushless).getEncoder());//2);
-    private Spark flTest = new Spark(1);
-
+ 
 	private SwerveDrive swerveDrive = new SwerveDrive(backRight, backLeft, frontRight, frontLeft);
 
 	public Robot() {

@@ -15,14 +15,16 @@ public class SwerveModule extends SubsystemBase {
 	private CANSparkMax angleMotor;
 	private Spark speedMotor;
 	private PIDController pidController;
-	private PIDController angleEncoder;
+	private RelativeEncoder angleEncoder;
 
 	private final double MAX_VOLTS = 4;
 
 	public SwerveModule(int angleMotor, int speedMotor, RelativeEncoder relativeEncoder) {
 		this.angleMotor = new CANSparkMax(angleMotor, MotorType.kBrushless);
 		this.speedMotor = new Spark(speedMotor);
-		angleEncoder = //new AnalogEncoder(encoder1);
+		
+		angleEncoder = this.angleMotor.getEncoder();
+
 		
 
 		pidController = new PIDController(1, 0, 0);
@@ -31,7 +33,7 @@ public class SwerveModule extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		angleMotor.set(pidController.calculate(angleEncoder.getSetpoint())); // spins angle motor
+		angleMotor.set(pidController.calculate(angleEncoder.getPosition())); // spins angle motor
 	}
 
 	public void drive(double speed, double angle) {
