@@ -19,9 +19,9 @@ public class SwerveModule extends SubsystemBase {
 
 	private final double MAX_VOLTS = 4;
 
-	public SwerveModule(int angleMotor, int speedMotor, RelativeEncoder relativeEncoder) {
-		this.angleMotor = new CANSparkMax(angleMotor, MotorType.kBrushless);
-		this.speedMotor = new Spark(speedMotor);
+	public SwerveModule(CANSparkMax angleMotor, Spark speedMotor, int Encoder) {
+		this.angleMotor = angleMotor;
+		this.speedMotor = speedMotor; 
 		
 		angleEncoder = this.angleMotor.getEncoder();
 
