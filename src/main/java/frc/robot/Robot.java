@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -33,6 +34,10 @@ private final XboxController m_xboxcontroller = new XboxController(1);
 	private CANSparkMax m_ALeftBack = new CANSparkMax(2, MotorType.kBrushless);
 	private CANSparkMax m_ARightFront = new CANSparkMax(3, MotorType.kBrushless);
 	private CANSparkMax m_ARightBack = new CANSparkMax(4, MotorType.kBrushless);
+
+
+
+	private RelativeEncoder m_ALeftBackE = m_ALeftBack.getEncoder();
 // all this is untested
 
     private SwerveModule backRight = new SwerveModule(m_ALeftBack, m_leftBack, 0);//0); //angleMotor Port, speedMotor port, ecoder 1, and 2
@@ -55,7 +60,17 @@ private final XboxController m_xboxcontroller = new XboxController(1);
 	public void robotInit() {
 		
 		SmartDashboard.putData("Auto_Choice", m_autoChooser);
-	
+
+		SmartDashboard.putNumber("Left Encoder", m_ALeftBackE.getPosition());
+
+
+
+
+
+
+
+
+
 	}
 
 	@Override
