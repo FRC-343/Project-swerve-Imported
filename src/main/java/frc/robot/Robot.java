@@ -40,10 +40,10 @@ private final XboxController m_xboxcontroller = new XboxController(1);
 	private RelativeEncoder m_ALeftBackE = m_ALeftBack.getEncoder();
 // all this is untested
 
-    private SwerveModule backRight = new SwerveModule(m_ALeftBack, m_leftBack, 0);//0); //angleMotor Port, speedMotor port, ecoder 1, and 2
-    private SwerveModule backLeft = new SwerveModule(m_ALeftFront, m_leftFront, 1);//1);
-    private SwerveModule frontRight = new SwerveModule(m_ARightBack, m_RightBack, 3);
-    private SwerveModule frontLeft = new SwerveModule(m_ARightFront, m_RightFront, 2);
+    private SwerveModule backRight = new SwerveModule(m_ALeftBack, m_leftBack);//0); //angleMotor Port, speedMotor port, ecoder 1, and 2
+    private SwerveModule backLeft = new SwerveModule(m_ALeftFront, m_leftFront);//1);
+    private SwerveModule frontRight = new SwerveModule(m_ARightBack, m_RightBack);
+    private SwerveModule frontLeft = new SwerveModule(m_ARightFront, m_RightFront);
  
 	private SwerveDrive swerveDrive = new SwerveDrive(backRight, backLeft, frontRight, frontLeft);
 	
