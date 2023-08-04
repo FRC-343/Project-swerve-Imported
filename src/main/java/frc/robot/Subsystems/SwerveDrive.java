@@ -2,8 +2,8 @@ package frc.robot.Subsystems;
 
 public class SwerveDrive {
 
-    public final double L = 19.25; // length between axles
-    public final double W = 18.375; // width between axles
+    public final double L = 26.5; // length between axles
+    public final double W = 24.5; // width between axles
 
     private SwerveModule backRight;
     private SwerveModule backLeft;

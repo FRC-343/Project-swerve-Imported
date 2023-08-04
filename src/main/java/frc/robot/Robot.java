@@ -25,20 +25,23 @@ private final XboxController m_xboxcontroller = new XboxController(1);
     private CommandBase m_auto;
     private final SendableChooser<CommandBase> m_autoChooser = new SendableChooser<CommandBase>();
 	
-	private Spark m_leftFront = new Spark(2);
-	private Spark m_leftBack = new Spark(3);
-	private Spark m_RightFront = new Spark(4);
-	private Spark m_RightBack = new Spark(5);
+	private Spark m_leftFront = new Spark(7);
+	private Spark m_leftBack = new Spark(0);
+	private Spark m_RightFront = new Spark(8);
+	private Spark m_RightBack = new Spark(2);
 
-	private CANSparkMax m_ALeftFront = new CANSparkMax(1, MotorType.kBrushless);
+	private CANSparkMax m_ALeftFront = new CANSparkMax(4, MotorType.kBrushless);
 	private CANSparkMax m_ALeftBack = new CANSparkMax(2, MotorType.kBrushless);
 	private CANSparkMax m_ARightFront = new CANSparkMax(3, MotorType.kBrushless);
-	private CANSparkMax m_ARightBack = new CANSparkMax(4, MotorType.kBrushless);
+	private CANSparkMax m_ARightBack = new CANSparkMax(1, MotorType.kBrushless);
 
 
 
 	private RelativeEncoder m_ALeftBackE = m_ALeftBack.getEncoder();
-// all this is untested
+	private RelativeEncoder m_ALeftFrontE = m_ALeftFront.getEncoder();
+	private RelativeEncoder m_ARightBackE = m_ARightBack.getEncoder();
+	private RelativeEncoder m_ARightFrontE = m_ARightFront.getEncoder();
+// all this is tested
 
     private SwerveModule backRight = new SwerveModule(m_ALeftBack, m_leftBack);//0); //angleMotor Port, speedMotor port, ecoder 1, and 2
     private SwerveModule backLeft = new SwerveModule(m_ALeftFront, m_leftFront);//1);
@@ -61,10 +64,10 @@ private final XboxController m_xboxcontroller = new XboxController(1);
 		
 		SmartDashboard.putData("Auto_Choice", m_autoChooser);
 
-		SmartDashboard.putNumber("Left Encoder", m_ALeftBackE.getPosition());
-
-
-
+		SmartDashboard.putNumber("Left Back Encoder", m_ALeftBackE.getPosition());
+		SmartDashboard.putNumber("Left Front Encoder", m_ALeftFrontE.getPosition());
+		SmartDashboard.putNumber("Right Front Encoder", m_ARightFrontE.getPosition());
+		SmartDashboard.putNumber("Right Back Encoder", m_ARightBackE.getPosition());
 
 
 

@@ -17,9 +17,12 @@ public class SwerveModule extends SubsystemBase {
 	private PIDController pidController;
 	private RelativeEncoder angleEncoder;
 
+	double setpoint;
+	double setpointtest;
+
 	private final double MAX_VOLTS = 4;
 
-	public SwerveModule(CANSparkMax angleMotor, Spark speedMotor, int Encoder) {
+	public SwerveModule(CANSparkMax angleMotor, Spark speedMotor) {
 		this.angleMotor = angleMotor;
 		this.speedMotor = speedMotor; 
 		
@@ -28,7 +31,7 @@ public class SwerveModule extends SubsystemBase {
 		
 
 		pidController = new PIDController(1, 0, 0);
-		pidController.enableContinuousInput(-1, 1); // this needs to change later TODO
+		pidController.enableContinuousInput(-180, 180); // this needs to change later TODO
 	}
 
 	@Override
@@ -39,15 +42,21 @@ public class SwerveModule extends SubsystemBase {
 	public void drive(double speed, double angle) {
 		speedMotor.set(speed);
 
-		double setpoint = angle * (MAX_VOLTS * 0.5) + (MAX_VOLTS * 0.5);
+		 setpoint = angle * (MAX_VOLTS * 0.5) + (MAX_VOLTS * 0.5);
 		if (setpoint < 0) {
-			setpoint = MAX_VOLTS + setpoint;
+			setpointtest = MAX_VOLTS + setpoint;
 		}
 		if (setpoint > MAX_VOLTS) {
-			setpoint = setpoint - MAX_VOLTS;
+			setpointtest = setpoint - MAX_VOLTS;
+		}
+		if (setpoint == 2){
+			setpointtest = 0;
+		}
+		else {
+			setpointtest = setpoint;
 		}
 
-		pidController.setSetpoint(setpoint); // point to spin angle motor
+		pidController.setSetpoint(setpointtest); // point to spin angle motor
 	}
 
     public void set(SwerveModule backRight, SwerveModule backLeft, SwerveModule frontRight,
