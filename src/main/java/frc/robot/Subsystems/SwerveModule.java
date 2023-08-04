@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
@@ -19,6 +20,7 @@ public class SwerveModule extends SubsystemBase {
 
 	double setpoint;
 	double setpointtest;
+	double angleprnt;
 
 	private final double MAX_VOLTS = 4;
 
@@ -37,6 +39,9 @@ public class SwerveModule extends SubsystemBase {
 	@Override
 	public void periodic() {
 		angleMotor.set(pidController.calculate(angleEncoder.getPosition())); // spins angle motor
+		SmartDashboard.putNumber("Set point", setpoint);
+		SmartDashboard.putNumber("Passed set point", setpointtest);
+		SmartDashboard.putNumber("Angle passed", angleprnt);
 	}
 
 	public void drive(double speed, double angle) {
@@ -55,6 +60,7 @@ public class SwerveModule extends SubsystemBase {
 		else {
 			setpointtest = setpoint;
 		}
+		angleprnt = angle;
 
 		pidController.setSetpoint(setpointtest); // point to spin angle motor
 	}
