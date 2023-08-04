@@ -1,5 +1,7 @@
 package frc.robot.Subsystems;
 
+import org.opencv.core.Mat;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -33,7 +35,7 @@ public class SwerveModule extends SubsystemBase {
 		
 
 		pidController = new PIDController(1, 0, 0);
-		pidController.enableContinuousInput(-180, 180); // this needs to change later TODO
+		pidController.enableContinuousInput(-Math.PI, Math.PI); // this needs to change later TODO
 	}
 
 	@Override
