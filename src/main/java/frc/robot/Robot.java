@@ -37,10 +37,10 @@ private final XboxController m_xboxcontroller = new XboxController(1);
 	private CANSparkMax m_ARightFront = new CANSparkMax(3, MotorType.kBrushless);
 	private CANSparkMax m_ARightBack = new CANSparkMax(1, MotorType.kBrushless);
 
-	private Encoder m_lFEncoder = new Encoder(2, 3);
-	private Encoder m_lBEncoder = new Encoder(0, 1);
-	private Encoder m_RFEncoder = new Encoder(4, 5);
-	private Encoder m_RBEncoder = new Encoder(6, 7);
+	private Encoder m_lFEncoder = new Encoder(4, 5);
+	private Encoder m_lBEncoder = new Encoder(6, 7);
+	private Encoder m_RFEncoder = new Encoder(2, 3);
+	private Encoder m_RBEncoder = new Encoder(0, 1);
 
 	private RelativeEncoder m_ALeftBackE = m_ALeftBack.getEncoder();
 	private RelativeEncoder m_ALeftFrontE = m_ALeftFront.getEncoder();
