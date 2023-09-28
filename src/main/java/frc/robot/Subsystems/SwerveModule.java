@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogEncoder;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -20,15 +21,19 @@ public class SwerveModule extends SubsystemBase {
 	private PIDController pidController;
 	private RelativeEncoder angleEncoder;
 
+	private Encoder bEncoder;
+
+	double bEprint;
 	double setpoint;
 	double setpointtest;
 	double angleprnt;
 
 	private final double MAX_VOLTS = 4;
 
-	public SwerveModule(CANSparkMax angleMotor, Spark speedMotor) {
+	public SwerveModule(CANSparkMax angleMotor, Spark speedMotor, Encoder bEncoder) {
 		this.angleMotor = angleMotor;
 		this.speedMotor = speedMotor; 
+		this.bEncoder = bEncoder;
 		
 		angleEncoder = this.angleMotor.getEncoder();
 
@@ -44,6 +49,7 @@ public class SwerveModule extends SubsystemBase {
 		SmartDashboard.putNumber("Set point", setpoint);
 		SmartDashboard.putNumber("Passed set point", setpointtest);
 		SmartDashboard.putNumber("Angle passed", angleprnt);
+		SmartDashboard.putNumber("Other Encoder", bEprint);
 	}
 
 	public void drive(double speed, double angle) {
@@ -63,6 +69,8 @@ public class SwerveModule extends SubsystemBase {
 			setpointtest = setpoint;
 		}
 		angleprnt = angle;
+
+		// bEprint= bEncoder;
 
 		pidController.setSetpoint(setpointtest); // point to spin angle motor
 	}
