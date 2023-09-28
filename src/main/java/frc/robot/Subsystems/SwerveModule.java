@@ -49,7 +49,7 @@ public class SwerveModule extends SubsystemBase {
 		SmartDashboard.putNumber("Set point", setpoint);
 		SmartDashboard.putNumber("Passed set point", setpointtest);
 		SmartDashboard.putNumber("Angle passed", angleprnt);
-		SmartDashboard.putNumber("Other Encoder", bEprint);
+		//  SmartDashboard.putNumber("Other Encoder", bEncoder);
 	}
 
 	public void drive(double speed, double angle) {
